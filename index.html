@@ -153,6 +153,10 @@
         box-shadow: 0 8px 25px rgba(156, 39, 176, 0.4);
       }
 
+      .link-button.points-table:hover {
+        box-shadow: 0 8px 25px rgba(255, 111, 0, 0.4);
+      }
+
       .link-icon {
         width: 24px;
         height: 24px;
@@ -202,6 +206,168 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+      }
+
+      /* Points Table Modal */
+      .points-modal-content {
+        background: linear-gradient(180deg, #2a2d35 0%, #1f2128 100%);
+        border-radius: 20px;
+        padding: 0;
+        max-width: 650px;
+        width: 90%;
+        position: relative;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        overflow: hidden;
+      }
+
+      .points-modal-content h2 {
+        color: #d4af37;
+        text-align: center;
+        margin: 0;
+        padding: 25px 30px;
+        font-size: 1.8rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        background: linear-gradient(135deg, #1a1c23 0%, #2d3038 100%);
+        border-bottom: 3px solid #d4af37;
+      }
+
+      .close-modal {
+        position: absolute;
+        top: 20px;
+        right: 25px;
+        font-size: 32px;
+        font-weight: bold;
+        color: rgba(255, 255, 255, 0.6);
+        cursor: pointer;
+        transition: color 0.3s ease;
+        z-index: 10;
+      }
+
+      .close-modal:hover {
+        color: #d4af37;
+      }
+
+      .points-table-wrapper {
+        padding: 30px;
+      }
+
+      .points-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+      }
+
+      .points-table thead {
+        background: rgba(42, 45, 53, 0.6);
+      }
+
+      .points-table th {
+        padding: 15px 12px;
+        text-align: center;
+        font-weight: 700;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        color: #b8b8b8;
+        border-bottom: 2px solid rgba(212, 175, 55, 0.3);
+      }
+
+      .points-table th:first-child {
+        text-align: center;
+        width: 60px;
+      }
+
+      .points-table th:nth-child(2) {
+        text-align: left;
+      }
+
+      .points-table th:last-child {
+        width: 100px;
+      }
+
+      .points-table tbody tr {
+        background: rgba(255, 255, 255, 0.02);
+        transition: all 0.3s ease;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      .points-table tbody tr:hover {
+        background: rgba(212, 175, 55, 0.1);
+        transform: translateX(5px);
+      }
+
+      .points-table tbody tr:nth-child(1) {
+        background: linear-gradient(
+          90deg,
+          rgba(255, 215, 0, 0.15) 0%,
+          rgba(255, 215, 0, 0.05) 100%
+        );
+        border-left: 4px solid #ffd700;
+      }
+
+      .points-table tbody tr:nth-child(2) {
+        background: linear-gradient(
+          90deg,
+          rgba(192, 192, 192, 0.15) 0%,
+          rgba(192, 192, 192, 0.05) 100%
+        );
+        border-left: 4px solid #c0c0c0;
+      }
+
+      .points-table tbody tr:nth-child(3) {
+        background: linear-gradient(
+          90deg,
+          rgba(205, 127, 50, 0.15) 0%,
+          rgba(205, 127, 50, 0.05) 100%
+        );
+        border-left: 4px solid #cd7f32;
+      }
+
+      .points-table td {
+        padding: 18px 12px;
+        color: #e8e8e8;
+        font-size: 1rem;
+        font-weight: 500;
+      }
+
+      .rank-cell {
+        font-weight: bold;
+        font-size: 1.2rem;
+        color: #d4af37;
+        text-align: center !important;
+        width: 60px;
+      }
+
+      .team-name-cell {
+        font-weight: 600;
+        font-size: 1.05rem;
+        text-align: left !important;
+        color: #ffffff;
+        padding-left: 15px !important;
+      }
+
+      .score-cell {
+        font-weight: bold;
+        font-size: 1.4rem;
+        color: #ffd700;
+        text-align: center;
+        text-shadow: 0 2px 4px rgba(255, 215, 0, 0.3);
+      }
+
+      .loading-spinner {
+        text-align: center;
+        padding: 60px 40px;
+        color: #b8b8b8;
+        font-size: 1.1rem;
+      }
+
+      .error-message {
+        text-align: center;
+        padding: 60px 40px;
+        color: #ff6b6b;
+        font-size: 1.1rem;
       }
 
       .carousel-container {
@@ -290,6 +456,51 @@
           padding: 12px 20px;
           font-size: 1rem;
         }
+
+        .points-modal-content {
+          width: 95%;
+          max-width: 95%;
+        }
+
+        .points-modal-content h2 {
+          font-size: 1.3rem;
+          padding: 20px 15px;
+          letter-spacing: 2px;
+        }
+
+        .points-table-wrapper {
+          padding: 20px 15px;
+        }
+
+        .points-table th {
+          padding: 12px 8px;
+          font-size: 0.75rem;
+          letter-spacing: 1px;
+        }
+
+        .points-table td {
+          padding: 14px 8px;
+          font-size: 0.9rem;
+        }
+
+        .rank-cell {
+          font-size: 1rem;
+          width: 45px;
+        }
+
+        .team-name-cell {
+          font-size: 0.9rem;
+        }
+
+        .score-cell {
+          font-size: 1.2rem;
+        }
+
+        .close-modal {
+          top: 15px;
+          right: 15px;
+          font-size: 28px;
+        }
       }
     </style>
   </head>
@@ -364,6 +575,24 @@
           </svg>
           Kuber Daan Entries
         </a>
+
+        <!-- Points Table Button -->
+        <a
+          href="#"
+          class="link-button points-table"
+          id="points-table-btn"
+          style="
+            background: linear-gradient(135deg, #5c6462 0%, #0a1e6fab 100%);
+            box-shadow: 0 5px 15px rgba(0, 191, 174, 0.3);
+          "
+        >
+          <svg class="link-icon" viewBox="0 0 24 24">
+            <path
+              d="M3,3H21V21H3V3M5,5V19H19V5H5M7,7H17V9H7V7M7,11H17V13H7V11M7,15H17V17H7V15Z"
+            />
+          </svg>
+          Points Table
+        </a>
       </div>
 
       <img src="varlogo.png" alt="VAR Logo" class="var-logo" />
@@ -385,6 +614,17 @@
             <button class="carousel-btn" id="prevBtn">&#10094;</button>
             <button class="carousel-btn" id="nextBtn">&#10095;</button>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Points Table Modal -->
+    <div class="modal" id="pointsModal">
+      <div class="points-modal-content">
+        <span class="close-modal" id="closePointsModal">&times;</span>
+        <h2>🏆 Points Table 🏆</h2>
+        <div id="pointsTableContainer">
+          <div class="loading-spinner">Loading scores...</div>
         </div>
       </div>
     </div>
@@ -525,6 +765,127 @@
       // Close modal on outside click
       window.addEventListener("click", (e) => {
         if (e.target === modal) modal.style.display = "none";
+      });
+
+      // Points Table Modal Logic
+      const pointsModal = document.getElementById("pointsModal");
+      const pointsTableContainer = document.getElementById(
+        "pointsTableContainer"
+      );
+
+      // For now, using local data. You can replace this with Google Sheets API later
+      const teamsData = [
+        { name: "C. N. R. Rao", score: 0 },
+        { name: "Sir M. Visvesvaraya", score: 0 },
+        { name: "Homi J. Bhabha", score: 0 },
+        { name: "Satish Dhawan", score: 0 },
+      ];
+
+      // Function to fetch scores from Google Sheets
+      // Replace SHEET_ID and API_KEY with your actual values
+      async function fetchScores() {
+        try {
+          // Option 1: Using Google Sheets API (you'll need to set this up)
+          // const SHEET_ID = 'YOUR_GOOGLE_SHEET_ID';
+          // const API_KEY = 'YOUR_API_KEY';
+          // const range = 'Sheet1!A2:B5'; // Adjust range as needed
+          // const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${range}?key=${API_KEY}`;
+
+          // const response = await fetch(url);
+          // const data = await response.json();
+          // const teams = data.values.map(row => ({
+          //   name: row[0],
+          //   score: parseInt(row[1]) || 0
+          // }));
+
+          // Option 2: Using published Google Sheets as CSV (easier, no API key needed)
+          // Instructions: File > Share > Publish to web > Choose CSV format
+          const SHEET_CSV_URL =
+            "https://docs.google.com/spreadsheets/d/e/2PACX-1vTcich9HIn7YCt7-KPoD23hedBx6YxO_HUBa1rF3uWL94k9jHDGm9wmNO7ZjCMxBUoCiqIRDFMUmBqd/pub?gid=0&single=true&output=csv";
+          const response = await fetch(SHEET_CSV_URL);
+          const csvText = await response.text();
+          const lines = csvText.trim().split("\n");
+          const teams = lines.slice(1).map((line) => {
+            const [name, score] = line.split(",");
+            return { name: name.trim(), score: parseInt(score) || 0 };
+          });
+
+          // For now, return local data (you can update these values manually in the code)
+          // Or follow the instructions below to use Google Sheets
+          // const teams = teamsData;
+
+          return teams;
+        } catch (error) {
+          console.error("Error fetching scores:", error);
+          throw error;
+        }
+      }
+
+      // Function to render the points table
+      function renderPointsTable(teams) {
+        // Sort teams by score in descending order
+        teams.sort((a, b) => b.score - a.score);
+
+        let tableHTML = `
+          <div class="points-table-wrapper">
+            <table class="points-table">
+              <thead>
+                <tr>
+                  <th>Pos</th>
+                  <th>Team</th>
+                  <th>Points</th>
+                </tr>
+              </thead>
+              <tbody>
+        `;
+
+        teams.forEach((team, index) => {
+          tableHTML += `
+            <tr>
+              <td class="rank-cell">${index + 1}</td>
+              <td class="team-name-cell">${team.name}</td>
+              <td class="score-cell">${team.score}</td>
+            </tr>
+          `;
+        });
+
+        tableHTML += `
+              </tbody>
+            </table>
+          </div>
+        `;
+
+        pointsTableContainer.innerHTML = tableHTML;
+      }
+
+      // Open points table modal
+      document
+        .getElementById("points-table-btn")
+        .addEventListener("click", async (e) => {
+          e.preventDefault();
+          pointsModal.style.display = "flex";
+          pointsTableContainer.innerHTML =
+            '<div class="loading-spinner">Loading scores...</div>';
+
+          try {
+            const teams = await fetchScores();
+            renderPointsTable(teams);
+          } catch (error) {
+            pointsTableContainer.innerHTML =
+              '<div class="error-message">Failed to load scores. Please try again later.</div>';
+          }
+        });
+
+      // Close points modal
+      document
+        .getElementById("closePointsModal")
+        .addEventListener("click", () => {
+          pointsModal.style.display = "none";
+        });
+
+      // Close modal on outside click
+      window.addEventListener("click", (e) => {
+        if (e.target === pointsModal) pointsModal.style.display = "none";
       });
     </script>
   </body>

@@ -308,6 +308,48 @@
         justify-content: center;
       }
 
+      .image-loading-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(224, 207, 207, 0.6);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+        border-radius: 10px;
+        transition: opacity 0.3s ease;
+      }
+
+      .image-loading-spinner {
+        width: 30px;
+        height: 30px;
+        border: 3px solid rgba(138, 67, 141, 0.3);
+        border-top: 3px solid #8a438d;
+        border-radius: 50%;
+        animation: imageSpinner 1s linear infinite;
+        margin-bottom: 10px;
+      }
+
+      @keyframes imageSpinner {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .image-loading-text {
+        color: rgba(138, 67, 141, 0.9);
+        font-size: 0.9rem;
+        font-weight: 500;
+        text-align: center;
+      }
+
       .winner-image {
         max-width: 100%;
         max-height: 100%;
@@ -359,6 +401,48 @@
         height: 350px;
         color: rgba(138, 67, 141, 0.8);
         font-size: 1.1rem;
+      }
+
+      .loading-text {
+        text-align: center;
+        margin-top: 10px;
+      }
+
+      .loading-main-text {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: rgba(138, 67, 141, 0.9);
+        margin-bottom: 5px;
+        animation: loadingPulse 2s infinite ease-in-out;
+      }
+
+      .loading-sub-text {
+        font-size: 0.9rem;
+        color: rgba(138, 67, 141, 0.6);
+        font-style: italic;
+        animation: loadingFade 3s infinite ease-in-out;
+      }
+
+      @keyframes loadingPulse {
+        0%,
+        100% {
+          opacity: 0.6;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.05);
+        }
+      }
+
+      @keyframes loadingFade {
+        0%,
+        100% {
+          opacity: 0.4;
+        }
+        50% {
+          opacity: 0.8;
+        }
       }
 
       .loading-spinner {
@@ -561,11 +645,52 @@
         font-size: 1.1rem;
       }
 
+      .points-table-loading {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 60px 40px;
+        color: #b8b8b8;
+        font-size: 1.1rem;
+        text-align: center;
+      }
+
+      .points-table-spinner {
+        width: 40px;
+        height: 40px;
+        border: 3px solid rgba(212, 175, 55, 0.2);
+        border-top: 3px solid #d4af37;
+        border-radius: 50%;
+        animation: pointsSpinner 1s linear infinite;
+        margin-bottom: 20px;
+      }
+
+      @keyframes pointsSpinner {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
       .error-message {
         text-align: center;
         padding: 60px 40px;
         color: #ff6b6b;
         font-size: 1.1rem;
+      }
+
+      .points-table-error {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 60px 40px;
+        color: #ff6b6b;
+        font-size: 1.1rem;
+        text-align: center;
       }
 
       .carousel-container {
@@ -726,6 +851,29 @@
         .winners-loading {
           height: 280px;
         }
+
+        .loading-main-text {
+          font-size: 1rem;
+        }
+
+        .loading-sub-text {
+          font-size: 0.8rem;
+        }
+
+        .image-loading-overlay {
+          border-radius: 8px;
+        }
+
+        .image-loading-spinner {
+          width: 25px;
+          height: 25px;
+          border-width: 2px;
+          margin-bottom: 8px;
+        }
+
+        .image-loading-text {
+          font-size: 0.8rem;
+        }
       }
     </style>
   </head>
@@ -757,13 +905,24 @@
         <div class="winners-carousel" id="winnersCarousel">
           <div class="winners-loading" id="winnersLoading">
             <div class="loading-spinner"></div>
-            <div>Loading Winners...</div>
+            <div class="loading-text">
+              <div class="loading-main-text">Loading Winners...</div>
+              <div class="loading-sub-text">Preparing Gallery</div>
+            </div>
           </div>
           <div
             class="winners-carousel-inner"
             id="winnersCarouselInner"
             style="display: none"
           >
+            <div
+              class="image-loading-overlay"
+              id="imageLoadingOverlay"
+              style="display: none"
+            >
+              <div class="image-loading-spinner"></div>
+              <div class="image-loading-text">Loading Image...</div>
+            </div>
             <img src="" alt="Winner" class="winner-image" id="winnerImage" />
           </div>
         </div>
@@ -877,7 +1036,10 @@
         <span class="close-modal" id="closePointsModal">&times;</span>
         <h2>🏆 Points Table 🏆</h2>
         <div id="pointsTableContainer">
-          <div class="loading-spinner">Loading scores...</div>
+          <div class="points-table-loading">
+            <div class="points-table-spinner"></div>
+            <div>Loading scores...</div>
+          </div>
         </div>
       </div>
     </div>
@@ -1118,14 +1280,14 @@
           e.preventDefault();
           pointsModal.style.display = "flex";
           pointsTableContainer.innerHTML =
-            '<div class="loading-spinner">Loading scores...</div>';
+            '<div class="points-table-loading"><div class="points-table-spinner"></div><div>Loading scores...</div></div>';
 
           try {
             const teams = await fetchScores();
             renderPointsTable(teams);
           } catch (error) {
             pointsTableContainer.innerHTML =
-              '<div class="error-message">Failed to load scores. Please try again later.</div>';
+              '<div class="points-table-error">Failed to load scores. Please try again later.</div>';
           }
         });
 
@@ -1168,15 +1330,15 @@
       // These values are injected from GitHub Secrets during deployment
       // To update: Go to GitHub Repo → Settings → Secrets and variables → Actions
 
-      const WINNERS_DRIVE_FOLDER_ID = "REPLACE_WITH_DRIVE_FOLDER_ID";
-
+      // const WINNERS_DRIVE_FOLDER_ID = "REPLACE_WITH_DRIVE_FOLDER_ID";
+      // const GOOGLE_API_KEY = "REPLACE_WITH_GOOGLE_API_KEY";
+      const GOOGLE_API_KEY = "AIzaSyC_kimklHfBLLtyk9JUHnYZ559j1tMyiZ0";
+      const WINNERS_DRIVE_FOLDER_ID = "1_oldo_tHbsT9vRuilBEEoY0T4z5jDNVo";
       // ========================================
       // 🔑 YOUR GOOGLE API KEY
       // ========================================
       // This is injected securely from GitHub Secrets during deployment
       // Never commit your actual API key to the repository!
-
-      const GOOGLE_API_KEY = "REPLACE_WITH_GOOGLE_API_KEY";
 
       // Array to store winner image URLs
       let winnerImages = [];
@@ -1313,10 +1475,17 @@
       function showWinner(index) {
         currentWinnerIndex = index;
         const imageData = winnerImages[index];
+        const imageLoadingOverlay = document.getElementById(
+          "imageLoadingOverlay"
+        );
+
+        // Show loading overlay
+        imageLoadingOverlay.style.display = "flex";
 
         // Clear previous image
         winnerImage.src = "";
-        winnerImage.alt = "Loading...";
+        winnerImage.alt = "";
+        winnerImage.style.opacity = "0";
 
         // Try multiple URL formats in order
         const urlsToTry = [
@@ -1331,10 +1500,12 @@
 
         function tryNextUrl() {
           if (currentUrlIndex >= urlsToTry.length) {
-            // Show error placeholder
+            // Hide loading overlay and show error placeholder
+            imageLoadingOverlay.style.display = "none";
             winnerImage.src =
               'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600"><rect width="800" height="600" fill="%230a0e27"/><circle cx="400" cy="250" r="60" fill="none" stroke="%23ffd700" stroke-width="3"/><line x1="370" y1="220" x2="370" y2="260" stroke="%23ffd700" stroke-width="3"/><line x1="430" y1="220" x2="430" y2="260" stroke="%23ffd700" stroke-width="3"/><path d="M 340 310 Q 400 340 460 310" fill="none" stroke="%23ffd700" stroke-width="3"/><text x="400" y="400" font-family="Arial" font-size="24" fill="%23ffd700" text-anchor="middle">Image Not Available</text><text x="400" y="440" font-family="Arial" font-size="16" fill="rgba(255,215,0,0.6)" text-anchor="middle">Check sharing permissions</text></svg>';
             winnerImage.alt = "Failed to load winner image";
+            winnerImage.style.opacity = "1";
             return;
           }
 
@@ -1342,8 +1513,17 @@
           const testImg = new Image();
 
           testImg.onload = () => {
+            // Hide loading overlay and show image
+            imageLoadingOverlay.style.display = "none";
             winnerImage.src = currentUrl;
             winnerImage.alt = imageData?.name || `Winner ${index + 1}`;
+            winnerImage.style.opacity = "1";
+
+            // Re-trigger animation
+            winnerImage.style.animation = "none";
+            setTimeout(() => {
+              winnerImage.style.animation = "imageZoomIn 0.5s ease-out";
+            }, 10);
           };
 
           testImg.onerror = () => {
@@ -1363,12 +1543,6 @@
           .forEach((indicator, i) => {
             indicator.classList.toggle("active", i === index);
           });
-
-        // Re-trigger animation
-        winnerImage.style.animation = "none";
-        setTimeout(() => {
-          winnerImage.style.animation = "imageZoomIn 0.5s ease-out";
-        }, 10);
       }
 
       // Go to specific winner

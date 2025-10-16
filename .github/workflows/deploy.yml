@@ -27,7 +27,7 @@ jobs:
           # Replace placeholders in index.html with actual secrets
           sed -i "s/REPLACE_WITH_GOOGLE_API_KEY/${{ secrets.GOOGLE_API_KEY }}/g" index.html
           sed -i "s/REPLACE_WITH_DRIVE_FOLDER_ID/${{ secrets.WINNERS_DRIVE_FOLDER_ID }}/g" index.html
-          
+
           # Verify replacements were made
           echo "Checking if secrets were injected..."
           if grep -q "REPLACE_WITH_" index.html; then

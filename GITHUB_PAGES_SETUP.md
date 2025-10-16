@@ -13,7 +13,7 @@ This guide will help you deploy your Samanvaya 2025 website to GitHub Pages with
 ### Step 1: Prepare Your Google Drive Folder
 
 1. **Create a folder** in Google Drive for winner images
-2. **Share the folder**: 
+2. **Share the folder**:
    - Right-click folder → Share
    - Change to "Anyone with the link" can view
    - Copy the folder ID from the URL (the long string after `/folders/`)
@@ -41,10 +41,12 @@ This guide will help you deploy your Samanvaya 2025 website to GitHub Pages with
 3. Click **New repository secret** and add these two secrets:
 
    **Secret 1:**
+
    - Name: `GOOGLE_API_KEY`
    - Value: Your Google API key from Step 2
 
    **Secret 2:**
+
    - Name: `WINNERS_DRIVE_FOLDER_ID`
    - Value: Your Google Drive folder ID from Step 1
 
@@ -74,6 +76,7 @@ This guide will help you deploy your Samanvaya 2025 website to GitHub Pages with
 ## 📁 Managing Winner Images
 
 After setup, managing winners is super easy:
+
 - **Add images**: Just upload to your Google Drive folder
 - **Remove images**: Delete from the folder
 - **Reorder**: Rename files (they're sorted by creation date)
@@ -83,6 +86,7 @@ The website will automatically show new images within a few minutes!
 ## 🌐 Accessing Your Site
 
 After deployment, your site will be available at:
+
 ```
 https://VARevents.github.io/samanvaya2k25/
 ```
@@ -90,21 +94,25 @@ https://VARevents.github.io/samanvaya2k25/
 ## 🔧 Troubleshooting
 
 ### "API Key invalid" Error
+
 - Check that Google Drive API is enabled
 - Verify API key is correct in GitHub Secrets
 - Make sure API key has no restrictions blocking the request
 
 ### "Folder not found" Error
+
 - Verify folder sharing is set to "Anyone with the link"
 - Check that folder ID is correct in GitHub Secrets
 - Make sure folder contains image files
 
 ### Images Not Loading
+
 - Check that files in Drive folder are actually images (PNG, JPG, etc.)
 - Verify folder permissions
 - Images may take a few minutes to appear due to Google's caching
 
 ### Deployment Failed
+
 - Check the Actions tab for error details
 - Ensure both secrets are properly set
 - Make sure the workflow has permissions to deploy
@@ -112,6 +120,7 @@ https://VARevents.github.io/samanvaya2k25/
 ## 🎨 Customization
 
 You can modify the winners gallery by editing `index.html`:
+
 - Change autoplay speed (line ~1320: `4000` = 4 seconds)
 - Modify carousel styling in the CSS section
 - Add click-to-enlarge functionality

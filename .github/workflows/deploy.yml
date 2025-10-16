@@ -3,31 +3,48 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main # Change to your default branch name if different
+      - main
   workflow_dispatch: # Allows manual trigger
 
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Inject environment variables
         run: |
           # Replace placeholders in index.html with actual secrets
           sed -i "s/REPLACE_WITH_GOOGLE_API_KEY/${{ secrets.GOOGLE_API_KEY }}/g" index.html
           sed -i "s/REPLACE_WITH_DRIVE_FOLDER_ID/${{ secrets.WINNERS_DRIVE_FOLDER_ID }}/g" index.html
+          
+          # Verify replacements were made
+          echo "Checking if secrets were injected..."
+          if grep -q "REPLACE_WITH_" index.html; then
+            echo "⚠️ Warning: Some placeholders were not replaced!"
+            grep "REPLACE_WITH_" index.html
+          else
+            echo "✅ All secrets successfully injected"
+          fi
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: .
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: .
-          publish_branch: gh-pages
+        id: deployment
+        uses: actions/deploy-pages@v2

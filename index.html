@@ -182,6 +182,204 @@
         font-style: italic;
       }
 
+      /* Winners Section */
+      .winners-section {
+        margin-top: 25px;
+        margin-bottom: 25px;
+        padding: 25px 20px;
+        background: linear-gradient(
+          135deg,
+          rgba(138, 67, 141, 0.15),
+          rgba(103, 58, 183, 0.1)
+        );
+        border-radius: 20px;
+        border: 2px solid rgba(138, 67, 141, 0.4);
+        position: relative;
+        overflow: hidden;
+        animation: winnersGlow 3s infinite ease-in-out;
+      }
+
+      @keyframes winnersGlow {
+        0%,
+        100% {
+          border-color: rgba(138, 67, 141, 0.4);
+          box-shadow: 0 0 20px rgba(138, 67, 141, 0.15);
+        }
+        50% {
+          border-color: rgba(103, 58, 183, 0.6);
+          box-shadow: 0 0 40px rgba(103, 58, 183, 0.3);
+        }
+      }
+
+      .winners-section::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(
+          45deg,
+          transparent,
+          rgba(138, 67, 141, 0.1),
+          transparent
+        );
+        animation: winnersShine 3s infinite;
+      }
+
+      @keyframes winnersShine {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .winners-header {
+        position: relative;
+        z-index: 1;
+        margin-bottom: 20px;
+      }
+
+      .winners-title {
+        font-size: 1.8rem;
+        font-weight: bold;
+        background: linear-gradient(135deg, #8a438d 0%, #673ab7 100%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        animation: titleBounce 2s infinite ease-in-out;
+      }
+
+      @keyframes titleBounce {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-5px);
+        }
+      }
+
+      .trophy-icon {
+        font-size: 2rem;
+        animation: trophyRotate 4s infinite ease-in-out;
+      }
+
+      @keyframes trophyRotate {
+        0%,
+        100% {
+          transform: rotate(-10deg) scale(1);
+        }
+        50% {
+          transform: rotate(10deg) scale(1.1);
+        }
+      }
+
+      .winners-subtitle {
+        font-size: 0.9rem;
+        color: rgba(103, 58, 183, 0.8);
+        font-style: italic;
+      }
+
+      .winners-carousel {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        height: 350px;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        background: rgba(0, 0, 0, 0.1);
+      }
+
+      .winners-carousel-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .winner-image {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        border-radius: 10px;
+        animation: imageZoomIn 0.5s ease-out;
+      }
+
+      @keyframes imageZoomIn {
+        0% {
+          opacity: 0;
+          transform: scale(0.8);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      .winners-indicators {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 15px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .winner-indicator {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: rgba(138, 67, 141, 0.3);
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .winner-indicator.active {
+        background: #8a438d;
+        transform: scale(1.3);
+        box-shadow: 0 0 10px rgba(138, 67, 141, 0.8);
+      }
+
+      .winners-loading {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 350px;
+        color: rgba(138, 67, 141, 0.8);
+        font-size: 1.1rem;
+      }
+
+      .loading-spinner {
+        width: 50px;
+        height: 50px;
+        border: 4px solid rgba(138, 67, 141, 0.2);
+        border-top: 4px solid #8a438d;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin-bottom: 15px;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
       /* Carousel Modal */
       .modal {
         display: none;
@@ -501,6 +699,33 @@
           right: 15px;
           font-size: 28px;
         }
+
+        /* Winners Section - Mobile */
+        .winners-section {
+          margin-top: 20px;
+          margin-bottom: 20px;
+          padding: 20px 15px;
+        }
+
+        .winners-title {
+          font-size: 1.5rem;
+        }
+
+        .trophy-icon {
+          font-size: 1.5rem;
+        }
+
+        .winners-subtitle {
+          font-size: 0.8rem;
+        }
+
+        .winners-carousel {
+          height: 280px;
+        }
+
+        .winners-loading {
+          height: 280px;
+        }
       }
     </style>
   </head>
@@ -517,6 +742,34 @@
         SAMANVAYA
       </h1>
       <p class="year">2025</p>
+
+      <!-- Winners Section -->
+      <div class="winners-section">
+        <div class="winners-header">
+          <div class="winners-title">
+            <span class="trophy-icon">🏆</span>
+            <span>Winners Gallery</span>
+            <span class="trophy-icon">🏆</span>
+          </div>
+          <div class="winners-subtitle">Celebrating Excellence</div>
+        </div>
+
+        <div class="winners-carousel" id="winnersCarousel">
+          <div class="winners-loading" id="winnersLoading">
+            <div class="loading-spinner"></div>
+            <div>Loading Winners...</div>
+          </div>
+          <div
+            class="winners-carousel-inner"
+            id="winnersCarouselInner"
+            style="display: none"
+          >
+            <img src="" alt="Winner" class="winner-image" id="winnerImage" />
+          </div>
+        </div>
+
+        <div class="winners-indicators" id="winnersIndicators"></div>
+      </div>
 
       <div class="links-container">
         <a href="#" class="link-button youtube" id="youtube-link">
@@ -887,6 +1140,306 @@
       window.addEventListener("click", (e) => {
         if (e.target === pointsModal) pointsModal.style.display = "none";
       });
+
+      // Winners Carousel Logic
+      const winnersCarousel = document.getElementById("winnersCarousel");
+      const winnersLoading = document.getElementById("winnersLoading");
+      const winnersCarouselInner = document.getElementById(
+        "winnersCarouselInner"
+      );
+      const winnerImage = document.getElementById("winnerImage");
+      const winnersIndicators = document.getElementById("winnersIndicators");
+
+      // ============================================
+      // 🏆 WINNERS GALLERY - FULLY AUTOMATED
+      // ============================================
+      // ✨ Just add/delete images in Google Drive - they appear automatically!
+      //
+      // SETUP REQUIRED (ONE-TIME):
+      // 1. Get your Google Drive folder ID (from folder URL)
+      // 2. Create a Google API Key (see guide below)
+      // 3. Set folder sharing to "Anyone with the link"
+      // 4. Add IDs below and deploy ONCE
+      // 5. From then on: Just manage images in Drive! 🎉
+
+      // ========================================
+      // 📁 YOUR GOOGLE DRIVE FOLDER ID
+      // ========================================
+      // These values are injected from GitHub Secrets during deployment
+      // To update: Go to GitHub Repo → Settings → Secrets and variables → Actions
+
+      const WINNERS_DRIVE_FOLDER_ID = "REPLACE_WITH_DRIVE_FOLDER_ID";
+
+      // ========================================
+      // 🔑 YOUR GOOGLE API KEY
+      // ========================================
+      // This is injected securely from GitHub Secrets during deployment
+      // Never commit your actual API key to the repository!
+
+      const GOOGLE_API_KEY = "REPLACE_WITH_GOOGLE_API_KEY";
+
+      // Array to store winner image URLs
+      let winnerImages = [];
+      let currentWinnerIndex = 0;
+      let winnerAutoplayInterval;
+
+      // Fetch images from Google Drive folder - AUTOMATED METHOD
+      async function fetchDriveImages() {
+        try {
+          // Build the API URL to fetch all images from the folder
+          const query = `'${WINNERS_DRIVE_FOLDER_ID}' in parents and mimeType contains 'image/' and trashed=false`;
+          const fields = "files(id,name,mimeType,createdTime)";
+          const url = `https://www.googleapis.com/drive/v3/files?q=${encodeURIComponent(
+            query
+          )}&key=${GOOGLE_API_KEY}&fields=${fields}&orderBy=createdTime desc`;
+
+          const response = await fetch(url);
+
+          if (!response.ok) {
+            const errorData = await response.json().catch(() => ({}));
+            console.error("Google Drive API Error:", errorData);
+
+            if (response.status === 403) {
+              throw new Error("API Key invalid or Drive API not enabled");
+            } else if (response.status === 404) {
+              throw new Error("Folder not found or not accessible");
+            } else {
+              throw new Error(`API request failed: ${response.status}`);
+            }
+          }
+
+          const data = await response.json();
+
+          if (!data.files || data.files.length === 0) {
+            return [];
+          }
+
+          // Convert to direct image URLs with fallback options
+          const images = data.files.map((file) => {
+            return {
+              url: `https://drive.google.com/thumbnail?id=${file.id}&sz=w1000`,
+              embedUrl: `https://lh3.googleusercontent.com/d/${file.id}`,
+              driveUrl: `https://drive.google.com/uc?export=download&id=${file.id}`,
+              viewUrl: `https://drive.google.com/uc?export=view&id=${file.id}`,
+              name: file.name,
+              id: file.id,
+            };
+          });
+
+          return images;
+        } catch (error) {
+          console.error("❌ Error fetching Drive images:", error.message);
+          throw error; // Don't fall back, show proper error
+        }
+      }
+
+      // Initialize winners carousel
+      async function initWinnersCarousel() {
+        try {
+          // Check if API key is configured (skip this check since key is already set)
+          if (GOOGLE_API_KEY === "YOUR_API_KEY_HERE" || !GOOGLE_API_KEY) {
+            winnersLoading.innerHTML = `
+              <div style="text-align: center; padding: 20px; color: rgba(255, 215, 0, 0.7); line-height: 1.6;">
+                <div style="font-size: 2rem; margin-bottom: 10px;">🔑</div>
+                <div style="font-weight: bold; margin-bottom: 10px;">Setup Required</div>
+                <div style="font-size: 0.9rem; color: rgba(255, 215, 0, 0.6);">
+                  Please add your Google API Key in the code<br>
+                  (See line ~1230 in index.html)
+                </div>
+                <div style="font-size: 0.8rem; margin-top: 15px; color: rgba(255, 215, 0, 0.5);">
+                  📚 Check AUTOMATED_SETUP_GUIDE.md for instructions
+                </div>
+              </div>
+            `;
+            return;
+          }
+
+          // Fetch images from Drive
+          const images = await fetchDriveImages();
+
+          if (images.length === 0) {
+            winnersLoading.innerHTML = `
+              <div style="text-align: center; padding: 20px; color: rgba(255, 215, 0, 0.6); line-height: 1.6;">
+                <div style="font-size: 2rem; margin-bottom: 10px;">📁</div>
+                <div style="font-weight: bold; margin-bottom: 5px;">No images found</div>
+                <div style="font-size: 0.85rem; margin-top: 10px; color: rgba(255, 215, 0, 0.5);">
+                  Add images to your Google Drive folder<br>
+                  Folder ID: ${WINNERS_DRIVE_FOLDER_ID.substring(0, 20)}...
+                </div>
+                <div style="font-size: 0.75rem; margin-top: 10px; color: rgba(255, 215, 0, 0.4);">
+                  Make sure folder is shared as "Anyone with the link"
+                </div>
+              </div>
+            `;
+            return;
+          }
+
+          winnerImages = images;
+
+          // Hide loading, show carousel
+          winnersLoading.style.display = "none";
+          winnersCarouselInner.style.display = "flex";
+
+          // Create indicators
+          winnersIndicators.innerHTML = "";
+          winnerImages.forEach((_, index) => {
+            const indicator = document.createElement("div");
+            indicator.className = "winner-indicator";
+            if (index === 0) indicator.classList.add("active");
+            indicator.addEventListener("click", () => goToWinner(index));
+            winnersIndicators.appendChild(indicator);
+          });
+
+          // Show first image
+          showWinner(0);
+
+          // Start autoplay
+          startWinnerAutoplay();
+        } catch (error) {
+          console.error("Error loading winners:", error);
+          winnersLoading.innerHTML = `
+            <div style="text-align: center; padding: 20px; color: rgba(255, 107, 53, 0.8);">
+              <div style="font-size: 2rem; margin-bottom: 10px;">⚠️</div>
+              <div style="font-weight: bold;">Failed to load images</div>
+              <div style="font-size: 0.85rem; margin-top: 10px; color: rgba(255, 107, 53, 0.6);">
+                ${error.message}
+              </div>
+            </div>
+          `;
+        }
+      }
+
+      // Show specific winner with fallback URLs
+      function showWinner(index) {
+        currentWinnerIndex = index;
+        const imageData = winnerImages[index];
+
+        // Clear previous image
+        winnerImage.src = "";
+        winnerImage.alt = "Loading...";
+
+        // Try multiple URL formats in order
+        const urlsToTry = [
+          imageData?.url, // Primary (thumbnail - most reliable)
+          imageData?.embedUrl, // Fallback 1
+          imageData?.driveUrl, // Fallback 2
+          imageData?.viewUrl, // Fallback 3
+          imageData, // Fallback 4 (if it's just a string)
+        ].filter(Boolean);
+
+        let currentUrlIndex = 0;
+
+        function tryNextUrl() {
+          if (currentUrlIndex >= urlsToTry.length) {
+            // Show error placeholder
+            winnerImage.src =
+              'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600"><rect width="800" height="600" fill="%230a0e27"/><circle cx="400" cy="250" r="60" fill="none" stroke="%23ffd700" stroke-width="3"/><line x1="370" y1="220" x2="370" y2="260" stroke="%23ffd700" stroke-width="3"/><line x1="430" y1="220" x2="430" y2="260" stroke="%23ffd700" stroke-width="3"/><path d="M 340 310 Q 400 340 460 310" fill="none" stroke="%23ffd700" stroke-width="3"/><text x="400" y="400" font-family="Arial" font-size="24" fill="%23ffd700" text-anchor="middle">Image Not Available</text><text x="400" y="440" font-family="Arial" font-size="16" fill="rgba(255,215,0,0.6)" text-anchor="middle">Check sharing permissions</text></svg>';
+            winnerImage.alt = "Failed to load winner image";
+            return;
+          }
+
+          const currentUrl = urlsToTry[currentUrlIndex];
+          const testImg = new Image();
+
+          testImg.onload = () => {
+            winnerImage.src = currentUrl;
+            winnerImage.alt = imageData?.name || `Winner ${index + 1}`;
+          };
+
+          testImg.onerror = () => {
+            currentUrlIndex++;
+            setTimeout(tryNextUrl, 100);
+          };
+
+          testImg.src = currentUrl;
+        }
+
+        // Start trying URLs
+        tryNextUrl();
+
+        // Update indicators
+        document
+          .querySelectorAll(".winner-indicator")
+          .forEach((indicator, i) => {
+            indicator.classList.toggle("active", i === index);
+          });
+
+        // Re-trigger animation
+        winnerImage.style.animation = "none";
+        setTimeout(() => {
+          winnerImage.style.animation = "imageZoomIn 0.5s ease-out";
+        }, 10);
+      }
+
+      // Go to specific winner
+      function goToWinner(index) {
+        showWinner(index);
+        resetWinnerAutoplay();
+      }
+
+      // Next winner
+      function nextWinner() {
+        const nextIndex = (currentWinnerIndex + 1) % winnerImages.length;
+        showWinner(nextIndex);
+      }
+
+      // Previous winner
+      function prevWinner() {
+        const prevIndex =
+          (currentWinnerIndex - 1 + winnerImages.length) % winnerImages.length;
+        showWinner(prevIndex);
+      }
+
+      // Start autoplay
+      function startWinnerAutoplay() {
+        winnerAutoplayInterval = setInterval(nextWinner, 4000); // Change image every 4 seconds
+      }
+
+      // Reset autoplay
+      function resetWinnerAutoplay() {
+        clearInterval(winnerAutoplayInterval);
+        startWinnerAutoplay();
+      }
+
+      // Touch swipe for winners carousel
+      let winnerStartX = 0;
+      let winnerIsDragging = false;
+
+      winnersCarousel.addEventListener("touchstart", (e) => {
+        winnerStartX = e.touches[0].clientX;
+        winnerIsDragging = true;
+      });
+
+      winnersCarousel.addEventListener("touchend", (e) => {
+        if (!winnerIsDragging) return;
+        winnerIsDragging = false;
+
+        const endX = e.changedTouches[0].clientX;
+        const deltaX = endX - winnerStartX;
+
+        if (Math.abs(deltaX) > 50) {
+          if (deltaX > 0) {
+            prevWinner();
+          } else {
+            nextWinner();
+          }
+          resetWinnerAutoplay();
+        }
+      });
+
+      // Pause autoplay on hover (desktop)
+      winnersCarousel.addEventListener("mouseenter", () => {
+        clearInterval(winnerAutoplayInterval);
+      });
+
+      winnersCarousel.addEventListener("mouseleave", () => {
+        startWinnerAutoplay();
+      });
+
+      // Initialize winners carousel on page load
+      setTimeout(() => {
+        initWinnersCarousel();
+      }, 500);
     </script>
   </body>
 </html>
